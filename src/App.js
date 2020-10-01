@@ -1,11 +1,72 @@
 import React from 'react';
+import * as contentful from 'contentful'
 // import logo from './logo.svg';
 import logo from './saluna-logo.png';
-import moon from './saluna-moon.png';
-import sun from './saluna-sun.png';
 import './App.css';
 
+import Landing from "./landing/Landing";
+import MenuSection from "./menu/MenuSection";
+
+const menuSections = [];
+const menuItems = [];
+
+var client = contentful.createClient({
+  space: 'z67ub1h0a7t4',
+  accessToken: '-PTqI4a37RirY-az5ZzJe5nosyh_Z4w5feNnGe1J8U8' });
+
+client.getEntries().then(entries => {
+  entries.items.forEach(entry => {
+    if(entry.sys.contentType.sys.id==="menuSection" && entry.fields.active) {
+      menuSections.push(entry.fields);
+      // console.log(menuSections[0]);
+    }
+    if(entry.sys.contentType.sys.id==="menuItem") {
+      menuItems.push(entry.fields);
+      // console.log(menuItems[0].moonriseMimosa)
+    }
+  })
+})
+
+console.log(menuSections);
+console.log(menuItems);
+
 function App() {
+
+  const sections = [
+    {
+      sectionTitle:'Openers',
+      active: true,
+      order: 1
+    },
+    {
+      sectionTitle:'Daily Specials',
+      active: true,
+      order: 2
+    },
+    {
+      sectionTitle:'Closers',
+      active: true,
+      order: 3
+    }
+  ];
+
+  const items = [
+    {
+      title: 'Drink 1',
+      description: 'Description 1',
+      section: 'Openers'
+    },
+    {
+      title: 'Drink 2',
+      description: 'Description 2',
+      section: 'Openers'
+    },
+    {
+      title: 'Drink 3',
+      description: 'Description 3',
+      section: 'Openers'
+    }
+  ];
 
   function handleClick() {
     if (
@@ -20,16 +81,7 @@ function App() {
   
   return (
     <div className="App">
-      <div id="landing" className="landing-wrapper">
-        <header className="App-header">
-          <img src={moon} className="moon-logo" alt="moon" />
-          <img src={sun} className="sun-logo" alt="sun" />
-          <p className ="App-title">
-            SOLUNA
-          </p>
-          <button type="button" className ="btn btn-enter" onClick={()=>handleClick()}>ENTER</button>
-        </header>
-      </div>
+      <Landing handleClick={handleClick}/>
       <div className="main-wrapper" id="main">
         <div className="header-wrapper">
           <img src={logo} className="header-logo" alt="logo" />
@@ -39,7 +91,11 @@ function App() {
           </div>
         </div>
         <div className="content-wrapper">
-          <div class="spacer"></div>
+          <div className="spacer"></div>
+          <MenuSection
+            section={sections[0]}
+            items={items}
+          />
           <div className="menu-section">
             <div className="menu-section-title">
               <h2>Openers</h2>

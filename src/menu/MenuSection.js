@@ -7,16 +7,17 @@ const MenuSection = ({section, items}) => {
     return (
         <div className="menu-section">
             <div className="menu-section-title">
-                <h2>{section}</h2>
+                <h2>{section.sectionTitle}</h2>
             </div>
             <div className="menu-section-items">
-                <ul>
                 {items && items.map(item => (
-                        <MenuItem item = {item}/>
-                    ))}
-                </ul>
+                    // item.fields.section.fields.sectionTitle===section.sectionTitle ?
+                    item.section===section.sectionTitle ?
+                        <MenuItem item = {item}/> : null
+                ))}
             </div>
         </div>
     );
   };
+
   export default MenuSection;
