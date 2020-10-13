@@ -11,8 +11,8 @@ const MenuSection = ({section, items}) => {
             </div>
             <div className="menu-section-items">
                 {items && items.map(item => (
-                    // item.fields.section.fields.sectionTitle===section.sectionTitle ?
-                    item.section===section.sectionTitle ?
+                    item.section.fields.sectionTitle===section.sectionTitle ?
+                    // item.section===section.sectionTitle ?
                         <MenuItem item = {item}/> : null
                 ))}
             </div>

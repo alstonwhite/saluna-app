@@ -12,7 +12,7 @@ const testItems = [
     {
       title: 'Drink 3',
       description: 'Description 3',
-      section: 'Openers'
+      section: 'Closers'
     }
   ];
 
