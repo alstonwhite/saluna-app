@@ -11,23 +11,52 @@ function App() {
   
   const [menuSections, setMenuSections] = useState(undefined);
   const [menuItems, setMenuItems] = useState(undefined);
+  const [menu, setMenu] = useState(undefined);
 
   useEffect(() => {
-    const sections = [];
-    const items = [];
+    // const sections = [];
+    // const items = [];
 
-    fetchContentful().then(entries => {
+    // fetchContentful().then(entries => {
+    //   entries.forEach(entry => {
+    //     if(entry.sys.contentType.sys.id==="menuSection" && entry.fields.active) {
+    //       sections.push(entry.fields)
+    //     }
+    //     if(entry.sys.contentType.sys.id==="menuItem" && entry.fields.active) {
+    //       items.push(entry.fields)
+    //     }
+    //   })
+    //   setMenuSections(sections);
+    //   setMenuItems(items);
+    // });
+
+    const menuArr = [];
+    const sections = [];
+    fetchContentful("menuSection").then(entries => {
       entries.forEach(entry => {
-        if(entry.sys.contentType.sys.id==="menuSection" && entry.fields.active) {
+        if(entry.fields.active) {
           sections.push(entry.fields)
         }
-        if(entry.sys.contentType.sys.id==="menuItem" && entry.fields.active) {
-          items.push(entry.fields)
+      })
+      sections.sort((a, b) => (a.order > b.order) ? 1 : -1)
+      sections.forEach(item => menuArr.push({section:item}))
+      for (let i = 0; i < menuArr.length; i++) {
+        menuArr[i].items = [];
+      }
+    });
+    fetchContentful("menuItem").then(entries => {
+      entries.forEach(entry => {
+        if(entry.fields.active) {
+          for (let i = 0; i < menuArr.length; i++) {
+            if (entry.fields.section.fields.sectionTitle === menuArr[i].section.sectionTitle) {
+              menuArr[i].items.push(entry.fields)
+            }
+          }
         }
       })
-      setMenuSections(sections);
-      setMenuItems(items);
-      });
+      setMenu(menuArr);
+    });
+      
   }, []); 
 
   function handleClick() {
@@ -40,6 +69,7 @@ function App() {
     }
   }
   
+
   return (
     <div className="App">
       <Landing handleClick={handleClick}/>
@@ -54,6 +84,7 @@ function App() {
         <MenuContent
           sections={menuSections}
           items={menuItems}
+          menu={menu}
         />
         <div className="footer-wrapper">
         </div>

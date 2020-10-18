@@ -28,7 +28,7 @@
 
 .main-wrapper {
   display: none;
-  background-color: white;
+  background-color:#ffffcc;
   /* flex-direction: column;
   overflow: auto; */
 }
@@ -66,14 +66,10 @@
 }
 
 .spacer {
-  background-color: white;
   height: 15vmin;
 }
 
 .content-wrapper {
-  /* position: fixed; */
-  /* top: 15vmin; */
-  /* height: 100vmin; */
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -95,6 +91,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: space-around;
   width: 90%;
 }
 
@@ -102,7 +99,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 50%;
+  width: 45%;
 }
 
 .menu-item-title{
