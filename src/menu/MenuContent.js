@@ -2,18 +2,11 @@ import React from 'react';
 
 import MenuSection from "./MenuSection";
 
-const MenuContent = ({sections, items, menu}) => {
+const MenuContent = ({menu}) => {
 
     return (
         <div className="content-wrapper">
             <div className="spacer"></div>
-            {/* {sections && items && sections.map(section => (
-                <MenuSection
-                section={section}
-                items={items}
-                />
-            ))} */}
-            {console.log(menu)}
             {menu && menu.map(section => (
                 <MenuSection
                     section={section}

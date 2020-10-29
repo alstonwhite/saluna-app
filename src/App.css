@@ -26,8 +26,11 @@
     left: center;
 }
 
-.main-wrapper {
+.inactive {
   display: none;
+}
+
+.main-wrapper {
   background-color:#ffffcc;
   /* flex-direction: column;
   overflow: auto; */

@@ -3,7 +3,7 @@ import React from 'react';
 import moon from '../saluna-moon.png';
 import sun from '../saluna-sun.png';
 
-const Landing = ({handleClick}) => {
+const Landing = ({handleClick, page}) => {
     return (
         <div id="landing" className="landing-wrapper">
             <header className="App-header">
