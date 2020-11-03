@@ -5,7 +5,7 @@ import logo from '../saluna-logo.png';
 import MenuContent from './MenuContent';
 
 
-const Menu = ({menu, page}) => {
+const Menu = ({menu}) => {
   return (
     <div className="main-wrapper" id="main">
       <div className="header-wrapper">

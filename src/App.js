@@ -23,12 +23,13 @@ function App() {
           items.push(entry.fields)
         }
       })
-      const menuArr = sections.sort((a, b) => (a.order > b.order) ? 1 : -1).map(item => {
-        return {section: item, items: []}
+      const menuArr = sections.sort((a, b) => (a.order > b.order) ? 1 : -1).map(section => {
+        return {sectionTitle: section.sectionTitle, items: []}
       })
       items.forEach(item => {
         menuArr.forEach(section => {
-          if (item.section.fields.sectionTitle === section.section.sectionTitle) {
+          // compare id vs section string
+          if (item.section.fields.sectionTitle === section.sectionTitle) {
             section.items.push(item)
           }
         })
@@ -47,11 +48,9 @@ function App() {
     <div className="App">
       {page ? <Landing 
         handleClick={handleClick}
-        page={page}
       />
       : <Menu 
         menu={menu}
-        page={page}
       /> }
     </div>
   );

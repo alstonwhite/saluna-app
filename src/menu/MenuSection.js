@@ -7,7 +7,7 @@ const MenuSection = ({section}) => {
     return (
         <div className="menu-section">
             <div className="menu-section-title">
-                <h2>{section.section.sectionTitle}</h2>
+                <h2>{section.sectionTitle}</h2>
             </div>
             <div className="menu-section-items">
                 {section.items && section.items.map(item => (
